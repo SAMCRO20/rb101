@@ -31,7 +31,7 @@ loop do # main loop
   loop do
     loan_amount = Kernel.gets().chomp()
 
-    if valid_number?(loan_amount) 
+    if valid_number?(loan_amount)
       prompt("Must enter a positive number.")
     else
       break
@@ -73,15 +73,18 @@ loop do # main loop
   monthly_interest_rate = annual_interest_rate / 12
   loan_duration_in_months = loan_duration.to_i() * 12
 
-  monthly_payment = loan_amount.to_f() * 
+  monthly_payment = loan_amount.to_f() *
                     (monthly_interest_rate / 
-                    (1 - (1 + monthly_interest_rate)**(-loan_duration_in_months)))
+                    (1 - (1 + monthly_interest_rate)**
+                    (-loan_duration_in_months)))
   
   total_payment = monthly_payment * loan_duration_in_months
   total_interest = total_payment - loan_amount.to_f()
 
-  prompt("#{name}, your monthly payment is: $#{format('%.2f', monthly_payment)}")
-  prompt("Total of #{loan_duration_in_months} Payments: $#{format('%.2f', total_payment)}")
+  prompt("#{name}, your monthly payment is: \
+        $#{format('%.2f', monthly_payment)}")
+  prompt("Total of #{loan_duration_in_months} Payments: \
+        $#{format('%.2f', total_payment)}")
   prompt("Total Interest: $#{format('%.2f', total_interest)}")
   prompt("-------------------------------")
 
