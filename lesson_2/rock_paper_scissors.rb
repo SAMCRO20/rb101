@@ -1,18 +1,4 @@
-VALID_CHOICES = ['rock', 'paper', 'scissors']
-
-def display_results(player, computer)
-  if (player == 'rock' && computer == 'scissors') ||
-      (player == 'paper' && computer == 'rock') ||
-      (player == 'scissors' && computer == 'paper')
-    prompt("You won!")
-  elsif (player == 'rock' && computer == 'paper') ||
-        (player == 'paper' && computer == 'scissors') ||
-        (player == 'scissors' && computer == 'rock')
-    prompt("Computer won!")
-  else
-    prompt("It's a tie!")
-  end
-end
+VALID_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock']
 
 def prompt(message)
   Kernel.puts("=> #{message}")
@@ -20,12 +6,26 @@ end
 
 def display_results(player, computer)
   if (player == 'rock' && computer == 'scissors') ||
-      (player == 'paper' && computer == 'rock') ||
-      (player == 'scissors' && computer == 'paper')
+     (player == 'rock' && computer == 'lizard') ||
+     (player == 'paper' && computer == 'rock') ||
+     (player == 'paper' && computer == 'spock') ||
+     (player == 'scissors' && computer == 'paper') ||
+     (player == 'scissors' && computer == 'lizard') ||
+     (player == 'lizard' && computer == 'spock') ||
+     (player == 'lizard' && computer == 'paper') ||
+     (player == 'spock' && computer == 'rock') ||
+     (player == 'spock' && computer == 'scissors')
     prompt("You won!")
   elsif (player == 'rock' && computer == 'paper') ||
+        (player == 'spock' && computer == 'paper') ||
+        (player == 'lizard' && computer == 'scissors') ||
         (player == 'paper' && computer == 'scissors') ||
-        (player == 'scissors' && computer == 'rock')
+        (player == 'scissors' && computer == 'rock') ||
+        (player == 'lizard' && computer == 'rock') ||
+        (player == 'spock' && computer == 'lizard') ||
+        (player == 'paper' && computer == 'lizard') ||
+        (player == 'rock' && computer == 'spock') ||
+        (player == 'scissors' && computer == 'spock')
     prompt("Computer won!")
   else
     prompt("It's a tie!")
