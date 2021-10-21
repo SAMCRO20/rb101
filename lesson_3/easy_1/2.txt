@@ -1,0 +1,4 @@
+! not equally
+? ternary operator ? this : that
+!!<some object> turns into their boolean equivalent
+!<some object> turns into the opposite of boolean equivalent
