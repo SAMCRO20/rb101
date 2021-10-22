@@ -1,0 +1,25 @@
+def dot_separated_ip_address?(input_string)
+  dot_separated_words = input_string.split(".")
+  while dot_separated_words.size > 0 do
+    word = dot_separated_words.pop
+    break unless is_an_ip_number?(word)
+  end
+  return true
+end
+
+# Refactored for checking if there are 4 dot-separated 'words'
+# and, utilizing a return false insted of a break out of the while loop
+
+def dot_separated_ip_address?(input_string)
+  dot_separated_words = input_string.split(".")
+  return false unless dot_separated_words.size == 4
+
+  while dot_separated_words.size > 0 do
+    word = dot_separated_words.pop
+    return false unless is_an_ip_number?(word)
+  end
+
+  true
+end
+
+# plus, didn't like the fact that the style guide would hammer the first attempt
