@@ -1,0 +1,39 @@
+The PEDAC Process
+
+## P: Understanding the Problem
+* possibly the most important step
+- Establish the rules and define the boundaries of the Problem
+  - Assess available information
+  - Restate Explicit requirements - clearly stated
+  - Identify Implicit requirements - extrapolated based on understanding 
+- Spend enough time. Don't rush this step.
+
+**General example**
+
+Given a string, produce a new string with every other word removed.
+
+-Explicit requirementsL
+  -Input: string
+  -Output: new string
+  -Remove every other word from the input string
+
+- Questions:
+  - What do we mean by every other word?
+  - How do we define a word in this context?
+    - Words are delimited by spaces
+
+## Sum Even Number Rows
+
+Imagine a squence of consecutive even integers beginning with 2. 
+The integers are grouped in rows, with the first row containing 
+one integer, the second row two integers, the third row three
+integers, and so on. Given an integer representing the number 
+of a particular row, return and integer representing the sum of 
+all integers in the row.
+
+- Sequence of integers
+- sequence begins with two
+- integers are consecutive
+- sequence is grouped into Rows
+- each row is incrementally larger: 1, 2, 3, ...
+- 
