@@ -1,0 +1,11 @@
+def foo(param = "no")
+  "yes"
+end
+
+def bar(param = "no")
+  param == "no" ? "yes" : "no"
+end
+
+What is the return of bar(foo)?
+
+"no"
