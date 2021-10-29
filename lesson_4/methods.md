@@ -35,4 +35,3 @@ irb :001 > [1, 2, 3].map do |num|
 irb :002 >   'hi'
 irb :003 > end
 => ["hi", "hi", "hi"]
-
