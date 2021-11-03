@@ -26,10 +26,30 @@
 
  # Enumerable#include
  - doesn't take a block but does require one argument
-
+```
 [1, 2, 3].include?(1)
  => true
+```
 
   - only checks the keys, not values, on a hash
   - basically a Hash#key method and acutally *.key?* is used instead over *.has_key?*
-  -
+  - recommended to use *.value?* instead of *.has_value?*
+
+  # Enumerable#partition
+  - partition divides elements in the current collection into two collections based on the block's return value
+  -i.e
+  ```
+  [1, 2, 3].partition do |num|
+    num.odd?
+  end
+  # => [[1, 3], [2]]
+  ```
+  - most idiomatic way to use partition is to parallel assign variables to capture the divided inner arrays
+  ```
+  odd, even = [1, 2, 3].partition do |num|
+    num.odd?
+  end
+
+  odd  # => [1, 3]
+  even # => [2]
+  ```
