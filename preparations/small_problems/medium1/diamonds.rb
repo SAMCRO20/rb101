@@ -1,13 +1,27 @@
-DIGIT_HASH = {
-  'zero' => '0', 'one' => '1', 'two' => '2', 'three' => '3', 'four' => '4',
-  'five' => '5', 'six' => '6', 'seven' => '7', 'eight' => '8', 'nine' => '9'
-}.freeze
-
-def word_to_digit(words)
-  DIGIT_HASH.keys.each do |word|
-    words.gsub!(/\b#{word}\b/, DIGIT_HASH[word])
-  end
-  words
+def print_row(grid_size, distance_from_center)
+  number_of_stars = grid_size - 2 * distance_from_center
+  stars = '*' * number_of_stars
+  puts stars.center(grid_size)
 end
 
-p word_to_digit('Please call me at five five five one two three four. Thanks.') == 'Please call me at 5 5 5 1 2 3 4. Thanks.'
+def diamond(grid_size)
+  max_distance = (grid_size - 1) / 2
+  max_distance.downto(0) { |distance| print_row(grid_size, distance) }
+  1.upto(max_distance)   { |distance| print_row(grid_size, distance) }
+end
+
+diamond(9)
+
+#     *
+#    ***
+#   *****
+#  *******
+# *********
+#  *******
+#   *****
+#    ***
+#     *
+
+#Further exploration
+# Modify it so that the solution prints out only the outline of the diamond
+
