@@ -53,7 +53,7 @@ loop do # main loop
     end
   end
 
-  # Get load duration
+  # Get loan duration
   prompt("How long is the duration of your loan (in years)?")
 
   loan_duration = ""
