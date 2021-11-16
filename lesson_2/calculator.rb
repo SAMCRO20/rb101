@@ -56,7 +56,7 @@ loop do
 end
 
 prompt("name")
-puts name + '!'
+puts name + '?!'
 
 loop do # main loop
   number1 = ''
