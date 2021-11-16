@@ -25,7 +25,7 @@ Sorting
 ## The sort method
 Reading the documentation doesn't help too much with String#<=> and Array#<=>
 *Sort process*
-```
+```ruby
 [2, 5, 3, 4, 1].sort do |a, b|
   puts "a is #{a} and b is #{b}"
   a <=> b
@@ -43,19 +43,19 @@ end
 ```
 
 *String#<=>*
-```
+```ruby
 ['arc', 'bat', 'cape', 'ants', 'cap'].sort
 # => ["ants", "arc", "bat", "cap", "cape"]
 ```
 
 *Array#<=>*
-```
+```ruby
 [['a', 'cat', 'b', 'c'], ['b', 2], ['a', 'car', 'd', 3], ['a', 'car', 'd']].sort
 # => [["a", "car", "d"], ["a", "car", "d", 3], ["a", "cat", "b", "c"], ["b", 2]]
 ```
 ## The sort_by method
 -Usually called with a block
-```
+```ruby
 ['cot', 'bed', 'mat'].sort_by do |word|
   word[1]
 end
@@ -63,4 +63,35 @@ end
 ```
 the block sorts based off the index at 1
 
+If used on a hash, you would need two arguments passed to the block (the key and value)
+```ruby
+people = { Kate: 27, john: 25, Mike:  18 }
 
+people.sort_by do |_, age|
+  age
+end
+# => [[:Mike, 18], [:john, 25], [:Kate, 27]]
+```
+easy to use when using integers, but what about the keys?
+
+### Symbol#<=>
+- when used, the symbols (as keys) are compared *after* to_s is called on them
+- It then returns the name or string corresonding to the symbol
+*The problem will be when the keys are a mix of capitals and not, easily corrected*
+```ruby
+people.sort_by do |name, _|
+  name.capitalize
+end
+# => [[:john, 25], [:Kate, 27], [:Mike, 18]]
+```
+
+## Other methods which use comparison
+- min
+- max
+- minmax
+- min_by
+- max_by
+- minmax
+All in the [Enumerable Ruby Docs](https://ruby-doc.org/core-3.0.2/Enumerable.html)
+
+**Comparison is at the heart of sorting**
