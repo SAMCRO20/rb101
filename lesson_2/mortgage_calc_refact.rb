@@ -86,7 +86,7 @@ loop do
   monthly_payment = loan_amount.to_i *
                     (monthly_apr / \
                     (1 - (1 + monthly_apr)**(-duration_in_months)))
-  
+
   output_string = "The monthly payment is $#{format('%.2f', monthly_payment)}"
   prompt(output_string)
   sleep(2)
