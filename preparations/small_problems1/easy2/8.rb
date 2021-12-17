@@ -1,4 +1,4 @@
-YES_OR_NO = ['y', 'n', 'yes', 'no']
+YES_OR_NO = %w(y n yes no)
 
 def clear_screen
   system('clear')
@@ -33,7 +33,7 @@ loop do
   clear_screen
   
   prompt("Enter 's' to compute the sum, 'p' to compute the product:")
-  operation = gets.chomp
+  operation = gets.chomp.downcase
   
   until valid_operation?(operation)
     clear_screen
