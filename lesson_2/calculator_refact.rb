@@ -4,12 +4,6 @@ require 'pry-byebug'
 require 'yaml'
 MESSAGES = YAML.load_file('calculator_messages_refact.yml')
 
-# puts "Language? / ¿Idioma? (en/es)"
-# language = gets.chomp 
-
-# LANG = language if language.downcase == 'en' || 
-#                    language.downcase == 'es'
-
 LANG = :en
 
 def clear_screen
@@ -25,14 +19,15 @@ def valid_number?(num)
 end
 
 def operation_to_message(op)
-  puts "=> #{MESSAGES[LANG][:operation][op.to_i - 1]} #{MESSAGES[LANG][:op_predicate]}"
+  puts "=> #{MESSAGES[LANG][:operation][op.to_i - 1]} "\
+  "#{MESSAGES[LANG][:op_predicate]}"
 end
 
 clear_screen
 
 prompt(:welcome)
 name = ''
-loop do 
+loop do
   name = gets.chomp
 
   if name.empty?
