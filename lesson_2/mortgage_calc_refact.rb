@@ -26,7 +26,7 @@ end
 
 def valid_number?(number)
   (number.to_i.to_s == number || number.to_f.to_s == number) &&
-    number.to_i >= 0
+    number.to_i > 0
 end
 
 clear_screen
@@ -46,7 +46,7 @@ clear_screen
 
 puts ">> Okay, #{user_name}!"
 prompt(:getting_started)
-sleep 2
+sleep 1
 
 loop do
   prompt(:loan_amount)
@@ -54,9 +54,9 @@ loop do
   loan_amount = gets.chomp
 
   until valid_number?(loan_amount)
-
     prompt(:valid_loan_amount)
     print("$ ")
+
     loan_amount = gets.chomp
   end
 
@@ -64,13 +64,19 @@ loop do
   loan_duration_in_years = gets.chomp
 
   until valid_number?(loan_duration_in_years)
-
     prompt(:valid_loan_duration)
+
     loan_duration_in_years = gets.chomp
   end
 
   prompt(:apr)
   yearly_apr_as_percent = gets.chomp
+
+  until valid_number?(yearly_apr_as_percent)
+    prompt(:valid_apr)
+
+    yearly_apr_as_percent = gets.chomp
+  end
 
   duration_in_months = loan_duration_in_years.to_f * 12
   monthly_apr = yearly_apr_as_percent.to_f / 100 / 12
@@ -79,9 +85,18 @@ loop do
                     (monthly_apr / \
                     (1 - (1 + monthly_apr)**(-duration_in_months)))
 
-  output_string = "The monthly payment is $#{format('%.2f', monthly_payment)}"
+  wait_string = "Well, #{user_name}, allow me to compute a $#{format('%.2f', loan_amount)} "\
+                  "loan at #{yearly_apr_as_percent}% APR over #{loan_duration_in_years} years."
+  puts ">> #{wait_string}"
+
+  sleep 1
+  puts " ."
+  sleep 1
+  puts " ."
+
+  output_string = "You're monthly payment would be $#{format('%.2f', monthly_payment)}."
   puts ">> #{output_string}"
-  sleep(2)
+  sleep 1
   puts("-----------------------------------------")
 
   prompt(:again)

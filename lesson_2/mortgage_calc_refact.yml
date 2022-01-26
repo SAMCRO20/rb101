@@ -11,6 +11,9 @@
                       Please enter a valid loan duration (in years)."
 :apr:                 "What is the loan APR? \n
                       (Examples: [1 = 1%] [5.5 = 5.5%] [9.99 = 9.99%])"
+:valid_apr:           "That doesn't look quite right. \n
+                      Please enter a valid APR \n
+                      (Examples: [1 = 1%] [5.5 = 5.5%] [9.99 = 9.99%])"
 :again:               "Would you like to perform another calculation? [y/n]"
 :valid_again:         "It seems like you didn't give a valid response. \n
                       >> Would you like to perform another calculation? [y/n]"
