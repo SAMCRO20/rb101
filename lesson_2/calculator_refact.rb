@@ -1,6 +1,5 @@
 # calculator_refact.rb
 
-require 'pry-byebug'
 require 'yaml'
 MESSAGES = YAML.load_file('calculator_messages_refact.yml')
 
