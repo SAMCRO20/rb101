@@ -1,0 +1,17 @@
+:welcome: "Hey there! Welcome to the Mortgage Calculator!"
+name: "What is your name?"
+valid_name: "It looks like you didn't type anything. Please enter a name."
+getting_started: "I will need to collect some information " \
+                 "from you to calculate the monthly payment of your loan."
+loan_amount: "What is the loan amount?"
+valid_loan_amount: "That doesn't look like a valid number. " \
+                   "Please enter a valid loan amount."
+loan_duration: "What is your loan duration (in years)?"
+valid_loan_duration: "That doesn't look quite right. " \
+                     "Please enter a valid loan duration (in years)."
+apr: "What is the loan APR?\n" \
+    "(Examples: [1 = 1%] [5.5 = 5.5%] [9.99 = 9.99%])"
+again: "Would you like to perform another calculation? [y/n]"
+valid_again: "It seems like you didn't give a valid response.\n" \
+           ">> Would you like to perform another calculation? [y/n]"
+goodbye: "Thank you for using the Mortgage Calculator. Goodbye, "
