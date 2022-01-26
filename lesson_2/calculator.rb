@@ -46,9 +46,9 @@ prompt('welcome')
 
 name = ''
 loop do
-  name = Kernel.gets().chomp()
+  name = gets.chomp
 
-  if name.empty?()
+  if name.empty?
     prompt("valid_name")
   else
     break
@@ -64,7 +64,7 @@ loop do # main loop
 
   loop do
     prompt("first")
-    number1 = Kernel.gets().chomp()
+    number1 = gets.chomp
 
     if number?(number1)
       break
@@ -75,7 +75,7 @@ loop do # main loop
 
   loop do
     prompt("second")
-    number2 = Kernel.gets().chomp()
+    number2 = gets.chomp
 
     if number?(number2)
       break
@@ -88,7 +88,7 @@ loop do # main loop
 
   operator = ""
   loop do
-    operator = Kernel.gets().chomp()
+    operator = gets.chomp
 
     if %w(1 2 3 4).include?(operator)
       break
@@ -100,21 +100,21 @@ loop do # main loop
 
   result = case operator
            when '1'
-             number1.to_i() + number2.to_i()
+             number1.to_i + number2.to_i
            when '2'
-             number1.to_i() - number2.to_i()
+             number1.to_i - number2.to_i
            when '3'
-             number1.to_i() * number2.to_i()
+             number1.to_i * number2.to_i
            when '4'
-             number1.to_f() / number2.to_f()
+             number1.to_f / number2.to_f
            end
 
   prompt("result")
   puts result
 
   prompt("again")
-  answer = Kernel.gets().chomp()
-  break unless answer.downcase().start_with?('y')
+  answer = gets.chomp
+  break unless answer.downcase.start_with?('y')
 end
 
 prompt("thanks")
