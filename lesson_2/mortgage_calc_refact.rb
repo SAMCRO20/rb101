@@ -33,18 +33,18 @@ clear_screen
 
 prompt(:welcome)
 prompt(:name)
-name = gets.chomp
+user_name = gets.chomp
 
-until valid_name?(name)
+until valid_name?(user_name)
   clear_screen
 
   prompt(:valid_name)
-  name = gets.chomp
+  user_name = gets.chomp
 end
 
 clear_screen
 
-puts ">> Okay, #{name}!"
+puts ">> Okay, #{user_name}!"
 prompt(:getting_started)
 sleep 2
 
@@ -101,4 +101,4 @@ loop do
   break if repeat_calculation.start_with?('n')
 end
 
-puts "Thank you for using the Mortgage Calculator. Goodbye, #{name}!"
+puts "Thank you for using the Mortgage Calculator. Goodbye, #{user_name}!"
