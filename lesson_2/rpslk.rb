@@ -3,12 +3,12 @@
 
 require'pry-byebug'
 
-RESPONSES = { r: 'rock', p: 'paper', s: 'scissors', l: 'lizard', k: 'Spock' }
-WINNING_MOVES = { rock: %w(paper Spock),
-                  paper: %w(scissor lizard),
-                  scissors: %w(rock Spock),
-                  lizard: %w(rock paper),
-                  Spock: %w(lizard paper) } # values beat key
+RESPONSES = { r: 'Rock', p: 'Paper', s: 'Scissors', l: 'Lizard', k: 'Spock' }
+WINNING_MOVES = { rock: %w(Paper Spock),
+                  paper: %w(Scissor Lizard),
+                  scissors: %w(Rock Spock),
+                  lizard: %w(Rock Paper),
+                  Spock: %w(Lizard Paper) } # values beat key
 WINS_PER_ROUND = 3
 RULES = <<~MSG
                             Welcome to RPSLK!                
@@ -57,22 +57,22 @@ end
 
 def results(player, computer, score)
   if player == computer
-    prompt("It's a tie")
+    "It's a tie"
   elsif WINNING_MOVES[RESPONSES[player].to_sym].include?(RESPONSES[computer])
-    scores[:computer] += 1
-    prompt("Computer wins")
+    score[:computer] += 1
+    "Computer wins"
   else
-    scores[:player] += 1
-    prompt("You win")
+    score[:player] += 1
+    "You win"
   end
 end
 
 def display_results(player, comuter, outcome, score)
-  prompt("You choce #{RESPONSES[player]}. The computer chose #{RESPONSES[comuter]}.")
+  prompt("You chose #{RESPONSES[player]}. The computer chose #{RESPONSES[comuter]}.")
   prompt(outcome)
   puts <<~MSG
               -------------------------------------
-              SCORE: PLAYER: [#{scores[:player]}] COMPUTER: [#{scores[:computer]}]
+              SCORE: PLAYER: [#{score[:player]}] COMPUTER: [#{score[:computer]}]
               -------------------------------------
   MSG
 end
@@ -133,3 +133,9 @@ until program_end == true
   program_end = true unless play_again?
   clear_screen
 end
+
+puts <<~MSG
+            Don't cry because it's over,
+            smile because it happened.
+                            -Dr. Seuss
+  MSG
