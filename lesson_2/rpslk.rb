@@ -77,9 +77,9 @@ end
 
 def winning_explanation(player, computer, outcome)
   if outcome == "Computer wins"
-    return WINNING_EXPLANATION[RESPONSES[computer].to_sym][RESPONSES[player].to_sym]
+    WINNING_EXPLANATION[RESPONSES[computer].to_sym][RESPONSES[player].to_sym]
   elsif outcome == "You win"
-    return WINNING_EXPLANATION[RESPONSES[player].to_sym][RESPONSES[computer].to_sym]
+    WINNING_EXPLANATION[RESPONSES[player].to_sym][RESPONSES[computer].to_sym]
   else
     "Guess we'll have to try that again..."
   end
@@ -88,8 +88,8 @@ end
 def display_results(player, computer, outcome, score)
   prompt("You chose #{RESPONSES[player]}.\
     The computer chose #{RESPONSES[computer]}.")
-    prompt(winning_explanation(player, computer, outcome))
-    prompt(outcome)
+  prompt(winning_explanation(player, computer, outcome))
+  prompt(outcome)
   puts <<~MSG
               -------------------------------------
               SCORE: PLAYER: [#{score[:player]}] COMPUTER: [#{score[:computer]}]
@@ -131,11 +131,10 @@ until program_end == true
 
   loop do
     player_choice = get_player_choice()
-    
+
     computer_choice = RESPONSES.keys.sample
-    
+
     outcome = results(player_choice, computer_choice, scores)
-    # binding.pry
 
     display_results(player_choice, computer_choice, outcome, scores)
 
