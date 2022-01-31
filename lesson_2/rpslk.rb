@@ -1,8 +1,6 @@
 # rpslk.rb
 # bonus features
 
-require 'pry-byebug'
-
 RESPONSES = { r: 'Rock', p: 'Paper', s: 'Scissors', l: 'Lizard', k: 'Spock' }
 WINNING_MOVES = { Rock: %w(Paper Spock),
                   Paper: %w(Scissors Lizard),
