@@ -1,13 +1,13 @@
 # rpslk.rb
 # bonus features
 
-require'pry-byebug'
+require 'pry-byebug'
 
 RESPONSES = { r: 'Rock', p: 'Paper', s: 'Scissors', l: 'Lizard', k: 'Spock' }
-WINNING_MOVES = { rock: %w(Paper Spock),
-                  paper: %w(Scissor Lizard),
-                  scissors: %w(Rock Spock),
-                  lizard: %w(Rock Paper),
+WINNING_MOVES = { Rock: %w(Paper Spock),
+                  Paper: %w(Scissors Lizard),
+                  Scissors: %w(Rock Spock),
+                  Lizard: %w(Rock Scissors),
                   Spock: %w(Lizard Paper) } # values beat key
 WINS_PER_ROUND = 3
 RULES = <<~MSG
@@ -22,15 +22,23 @@ RULES = <<~MSG
               --------------------------------------------
                 Rock: smashes Scissors - crushes Lizard
                 Paper: covers Rock - refutes Spock
-                Scissors: cuts Paper - decapitates Lizard
+                Scissors: cut Paper - decapitates Lizard
                 Lizard: eats Paper - poisons Spock
                 Spock: vaporizes Rock - smashes Scissors
 
               - Can you get to #{WINS_PER_ROUND} wins before the computer?
 
 MSG
-
-# add winning_move with key as winner choice and how it wins - eventually
+WINNING_EXPLANATION = { Rock: { Scissors: "Rock smashes Scissors.",
+                                Lizard: "Rock crushes Lizard." },
+                        Paper: { Rock: "Paper covers Rock.",
+                                 Spock: "Paper refutes Spock." },
+                        Scissors: { Paper: "Scissors cut Paper.",
+                                    Lizard: "Scissors decapitate Lizard." },
+                        Lizard: { Paper: "Lizard eats Paper.",
+                                  Spock: "Lizard poisons Spock." },
+                        Spock: { Rock: "Spock vaporizes Rock.",
+                                 Scissors: "Spock smashes Scissors." } }
 
 def prompt(message)
   puts ">> #{message}"
@@ -42,7 +50,7 @@ end
 
 def get_player_choice
   loop do
-    prompt("Choose one:") 
+    prompt("Choose one:")
     RESPONSES.each { |abbr, response| puts "\t#{abbr} => #{response}" }
     player_choice = gets.chomp.to_sym
 
@@ -67,9 +75,21 @@ def results(player, computer, score)
   end
 end
 
-def display_results(player, comuter, outcome, score)
-  prompt("You chose #{RESPONSES[player]}. The computer chose #{RESPONSES[comuter]}.")
-  prompt(outcome)
+def winning_explanation(player, computer, outcome)
+  if outcome == "Computer wins"
+    return WINNING_EXPLANATION[RESPONSES[computer].to_sym][RESPONSES[player].to_sym]
+  elsif outcome == "You win"
+    return WINNING_EXPLANATION[RESPONSES[player].to_sym][RESPONSES[computer].to_sym]
+  else
+    "Guess we'll have to try that again..."
+  end
+end
+
+def display_results(player, computer, outcome, score)
+  prompt("You chose #{RESPONSES[player]}.\
+    The computer chose #{RESPONSES[computer]}.")
+    prompt(winning_explanation(player, computer, outcome))
+    prompt(outcome)
   puts <<~MSG
               -------------------------------------
               SCORE: PLAYER: [#{score[:player]}] COMPUTER: [#{score[:computer]}]
@@ -96,13 +116,12 @@ def play_again?
     else
       prompt("#{again} is not a valid choice...")
       sleep 1
-      prompt("Would you like to play again? Y/N")
     end
   end
 end
 
 # clear_screen
-puts "#{RULES}"
+puts RULES.to_s
 
 program_end = false
 
@@ -111,19 +130,19 @@ until program_end == true
   scores = { player: 0, computer: 0 }
 
   loop do
-    # binding.pry
     player_choice = get_player_choice()
     
     computer_choice = RESPONSES.keys.sample
     
     outcome = results(player_choice, computer_choice, scores)
-    
+    # binding.pry
+
     display_results(player_choice, computer_choice, outcome, scores)
-    
+
     prompt('Enter to continue')
     gets
     clear_screen
-    
+
     if scores.values.max == WINS_PER_ROUND
       display_grand_winner(scores)
       break
